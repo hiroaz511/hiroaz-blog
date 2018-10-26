@@ -1,0 +1,16 @@
+<div class="mx-5 bg-light">
+  	<div>
+	  <strong>ユーザー:</strong>
+	  <%= comment.commenter %>
+	</div>
+	<div>
+	  <strong>コメント:</strong>
+	  <%= comment.body %>
+	</div>
+</div>
+
+<p class="text-center">
+  <%= link_to 'コメントを削除', [comment.article, comment],
+               method: :delete,
+               data: { confirm: 'Are you sure?' } %>
+</p>

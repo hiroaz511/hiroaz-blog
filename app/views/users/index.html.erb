@@ -1,0 +1,10 @@
+  <div class="container-sub text-dark bg-info">
+    <h1 class="pt-3 text-center">ユーザー一覧</h1>
+    <% @users.each do |user| %>
+      <div class="mx-5 px-2 my-1 bg-light border">
+      	<span class="pr-2 mr-2 border-right"><%= link_to(user.name, "/users/#{user.id}") %></span>
+      	<span class="pr-2 mr-2 border-right"><%= user.email %></span>
+      	<span><%= link_to("編集", "/users/#{user.id}/edit") %></span>
+      </div>
+    <% end %>
+  </div>

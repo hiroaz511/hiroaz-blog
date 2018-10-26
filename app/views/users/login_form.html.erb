@@ -1,0 +1,17 @@
+<div class="container-sub text-center text-dark bg-info">
+  <h1 class="pt-3">ログイン</h1>
+      <div>
+        <% if @error_message %>
+          <div class="text-danger">
+            <%= @error_message %>
+          </div>
+        <% end %>
+        <%= form_tag("/login") do %>
+          <p>メールアドレス</p>
+          <input name="email" value="<%= @email %>">
+          <p>パスワード</p>
+          <input type="password" name="password" value="<%= @password %>"><br>
+          <input type="submit" value="ログイン" class="mt-3">
+        <% end %>
+       </div>
+</div>
