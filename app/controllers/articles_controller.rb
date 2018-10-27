@@ -1,7 +1,7 @@
 class ArticlesController < ApplicationController
 	# http_basic_authenticate_with name: "dhh", password: "secret", except: [:index, :show]
     before_action :authenticate_user, {only: [:index, :show, :edit, :update]}
-    before_action :forbid_login_user, {only: [:new, :create, :login_form, :login]}
+    before_action :forbid_login_user, {only: [:create, :login_form, :login]}
 
 	def show
 		@article = Article.find(params[:id])

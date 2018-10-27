@@ -5,18 +5,21 @@
 		  <strong>タイトル:</strong>
 		  「<%= @article.title %>」
 		</p>
-		 
+
 		<p class="bg-light border mx-5">
 		  <strong>本文:</strong>
 		  <%= @article.text %>
 		</p>
-		 
+
+
 		<h3 class="text-center mx-5 mt-5">コメント</h3>
 		<%= render @article.comments %>
-		 
+
+
 		<h3 class="text-center mx-5 mt-5">コメント追加</h3>
 		<%= render "comments/form" %>
-		 
-		<%= link_to 'Edit Article', edit_article_path(@article) %> |
-	<%= link_to 'Back to Articles', articles_path %>
+		<p class="text-center">
+		<%= link_to '編集', edit_article_path(@article) %> |
+		<%= link_to '記事一覧に戻る', articles_path %>
+		</p>
 </div>
