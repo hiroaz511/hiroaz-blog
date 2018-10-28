@@ -12,14 +12,15 @@
   <% end %>
   <p>
     <%= form.label :タイトル %><br>
-    <%= form.text_field :title %>
+    <input name="title"></input>
   </p>
- 
+
   <p>
-    <%= form.label :テキスト %><br>
-    <%= form.text_area :text %>
+    <%= form.label :本文 %><br>
+    <textarea name="text"></textarea>
   </p>
- 
+
+
   <p>
     <%= form.submit %>
   </p>
