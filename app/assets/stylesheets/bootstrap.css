@@ -3958,7 +3958,7 @@ input[type="button"].btn-block {
 .tab-content > .active {
   display: block;
 }
-  width: 100%;
+
 .navbar {
   position: relative;
   display: -ms-flexbox;
