@@ -16,13 +16,12 @@
 	width: 100%;
     height: 1000px;
 }
-.btn{
-	width:115px;
-	height:60px;
-	font-size:30px;
-	position:absolute;top:475px; left:565px;
-}
+
 #logo{
 	width:150px;
 	height:auto;
+}
+
+.navbar-default .navbar-toggle .icon-bar {
+    background: #808080;
 }

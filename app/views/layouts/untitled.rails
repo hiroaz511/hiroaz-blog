@@ -1,0 +1,15 @@
+ 
+       <%if session[:user_id] %>
+
+
+ <% else %>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#menu2">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+            <div class="collapse navbar-collapse" id="menu2">
+                  <ul class="navbar-nav ml-auto">
+                    <li class="nav-item nav-link"><%= link_to '新規登録', signup_path, class: 'text-dark'  %></li>
+                    <li class="nav-item nav-link"><%= link_to 'ログイン', login_path, class: 'text-dark'  %></li>
+                  </ul>
+            </div>
+        <% end %>
