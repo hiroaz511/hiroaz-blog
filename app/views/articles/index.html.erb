@@ -9,16 +9,30 @@
           <th class="text-dark text-center">Body</th>
           <th colspan="3"></th>
         </tr>
-
+<%= request.path_info %>
       <% @articles.each do |article| %>
         <div>
           <tr class="border text-dark bg-light">
             <td class="border-right"><%= article.user.name%></td>
             <td class="border-right"><%= link_to article.title, article_path(article) %></td>
             <td class="border-right w-50"><%= time_ago_in_words(article.created_at) %> ago (<%= article.created_at.strftime('%Y/%m/%d %H:%M') %>)<br><%= article.text %></td>
-            <td class="border-right text-center"><%= link_to '編集', edit_article_path(article) %></td>
+            <td class="border-right">
+                  <% if Like.find_by(user_id: @current_user.id, article_id: article.id) %>
+                    <%= link_to("/likes/#{article.id}/destroy", {method: "post"}) do %>
+                      <i class="fas fa-heart liked-icon"></i>
+                    <% end %>
+                  <% else %>
+                    <%= link_to("/likes/#{article.id}/create", {method: "post"}) do %>
+                      <span class="far fa-heart like-icon"></span>
+                    <% end %>
+                  <% end %>
+                  (<%= Like.where(article_id: article.id).count %>)
+            </td>
+          <% if article.user == @current_user %>
+            <td class="border-right text-center"><%= link_to '編集', edit_article_path(article), class: "btn btn-warning" %></td>
             <td class="text-center"><%= link_to '削除', article_path(article),
-                            method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                            method: :delete, data: { confirm: 'Are you sure?' } , class: "btn btn-secondary"%></td>
+          <% end %>
           </tr>
         </div>
       <% end %>

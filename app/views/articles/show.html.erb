@@ -13,6 +13,16 @@
 
 		<h3 class="text-center mx-5 mt-5">コメント</h3>
 		<%= render @article.comments %>
+<%= request.path_info %>
+		<% if Like.find_by(user_id: @current_user.id, article_id: @article.id) %>
+        	<%= link_to("/likes/#{@article.id}/destroy", {method: "post"}) do %>
+        		<i class="fas fa-heart liked-icon"></i>
+        	<% end %>
+        <% else %>
+        	<%= link_to("/likes/#{@article.id}/create", {method: "post"}) do %>
+        		<span class="far fa-heart like-icon"></span>
+        	<% end %>
+        <% end %>
 
 
 		<h3 class="text-center mx-5 mt-5">コメント追加</h3>
