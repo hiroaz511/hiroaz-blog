@@ -16,7 +16,14 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user= User.new(name: params[:name], email: params[:email], password: params[:password])
+    @user= User.new(name: params[:name], email: params[:email], password: params[:password], image_name: params[:image])
+    if params[:image]
+      @user.image_name= "#{@user.id}.jpg"
+      image = params[:image]
+      File.binwrite("public/user-images/#{@user.image_name}",image.read )
+    else
+      @user.image_name= "no-image.png"
+    end
     if @user.save
        session[:user_id] = @user.id
        flash[:notice] = "ユーザー登録が完了しました"
@@ -34,6 +41,12 @@ class UsersController < ApplicationController
     @user= User.find_by(id: params[:id])
     @user.name = params[:name]
     @user.email = params[:email]
+
+   if params[:image]
+      @user.image_name= "#{@user.id}.jpg"
+      image = params[:image]
+      File.binwrite("public/user-images/#{@user.image_name}",image.read )
+    end
 
     if @user.save
        flash[:notice] = "編集が完了しました"

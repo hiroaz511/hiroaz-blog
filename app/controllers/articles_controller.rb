@@ -21,10 +21,8 @@ class ArticlesController < ApplicationController
 
 
 	def create
-		# @article = Article.new(article_params)
+
 		@article = Article.new(title: params[:title], text: params[:text], user_id: @current_user.id)
-		# @article = Article.new(title: "What's up", text: "I love Japan", user_id: @current_user.id)
-		# @user = User.find_by(id: params[:id])
 
 	    if @article.save
 	       flash[:notice] = "記事の投稿が完了しました"
