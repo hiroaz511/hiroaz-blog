@@ -13,7 +13,7 @@
       <% @articles.each do |article| %>
         <div>
           <tr class="border text-dark bg-light">
-            <td class="border-right w-25"><img src = "<%= "/user-images/#{article.user.image_name}" %>" class="user-image mx-2 my-1"><%= article.user.name%></td>
+            <td class="border-right w-25"><img src = "<%= "/#{article.user.image_name}" %>" class="user-image mx-2 my-1"><%= article.user.name%></td>
             <td class="border-right"><%= link_to article.title, article_path(article) %></td>
             <td class="border-right w-50"><%= time_ago_in_words(article.created_at) %> ago (<%= article.created_at.strftime('%Y/%m/%d %H:%M') %>)<br><%= article.text %></td>
             <td class="border-right">
