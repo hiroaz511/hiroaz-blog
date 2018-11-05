@@ -13,6 +13,7 @@
 //= require jquery-3.3.1.min.js
 //= require popper-utils.min.js
 //= require popper.min.js
+//= require bootstrap.js
 //= require bootstrap.min.js
 //= require rails-ujs
 //= require_tree .
