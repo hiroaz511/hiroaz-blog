@@ -5,6 +5,7 @@ class Article < ApplicationRecord
                     length: { minimum: 5 }
   validates :user_id, presence: true
 
+  # scope :newer, -> { order(created_at: :desc) }
     def user
     	return User.find_by(id: self.user_id)
     end

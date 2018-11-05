@@ -1,6 +1,7 @@
 class ArticlesController < ApplicationController
 	# http_basic_authenticate_with name: "dhh", password: "secret", except: [:index, :show]
     before_action :authenticate_user, {only: [:index, :show, :edit, :update]}
+
     # before_action :set_user
     # before_action :forbid_login_user, {only: [:login_form, :login]}
 
@@ -15,7 +16,7 @@ class ArticlesController < ApplicationController
 	end
 
 	def index
-		@articles = Article.all
+		@articles = Article.all.order(created_at: :desc).limit(10)
 
 	end
 
