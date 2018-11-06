@@ -22,11 +22,11 @@
       <div class="container-fluid">
         <a class="navbar-brand" href="/"><img src="/logo2.png" id="logo"></a>
 
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#target" aria-controls="target" aria-expanded="false" aria-label="Toggle navigation">
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#Navbar" aria-controls="#Navbar" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
         <%if session[:user_id] %>
-            <div class="collapse navbar-collapse" id="target">
+            <div class="collapse navbar-collapse" id="Navbar">
                   <ul class="navbar-nav ml-auto">
                       <li class="nav-item nav-link"><%= @current_user.name %></li>
                       <li class="nav-item nav-link"><%= link_to '投稿一覧', articles_path, class: 'text-dark' %></li>
