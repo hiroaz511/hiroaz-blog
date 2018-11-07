@@ -43,7 +43,7 @@
                           <% end %>
                         <% end %>
 
-                        <%= Like.where(article_id: article.id).count %>
+                        <span id="like-count"><%= Like.where(article_id: article.id).count %></span>
                      </span>
 
 
