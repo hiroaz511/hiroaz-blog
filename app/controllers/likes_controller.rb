@@ -4,7 +4,7 @@ class LikesController < ApplicationController
  def create
  	@like=Like.new(user_id: @current_user.id, article_id: params[:article_id])
  	@like.save
- 	puts "!!!!!!!!!!!!!!!!!!!!!!1" + request.path_info
+ 	puts "!!!!!!!!!!!!!!!!!!!!!!" + request.path_info
  	puts "??????????????????????" + '/articles/#{article_id}/create'
  	if request.path_info == '/articles/#{article_id}/create'
  		puts "一覧ページにいます"
