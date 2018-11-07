@@ -22,44 +22,34 @@
             <td class="border-right w-75">
                 <p class="font-weight-bold"><%= link_to article.title, article_path(article) %></p>
                 <p><%= article.text %></p>
-                <p class="text-right"><%= time_ago_in_words(article.created_at) %> ago (<%= article.created_at.strftime('%Y/%m/%d %H:%M') %>)</p>
+                <p class="text-right mr-2"><%= time_ago_in_words(article.created_at) %> ago (<%= article.created_at.strftime('%Y/%m/%d %H:%M') %>)</p>
                 <span class="float-right mb-1 mr-1">
                     <% if article.user == @current_user %>
                       <%= link_to '編集', edit_article_path(article), class: "btn btn-warning btn-sm text-right" %>
                       <%= link_to '削除', article_path(article),
                         method: :delete, data: { confirm: 'Are you sure?' } , class: "btn btn-secondary btn-sm  text-right"%>
                     <% end %>
+
+                    <span class="display-box py-2 px-1 text-center">
+                        <% if Like.find_by(user_id: @current_user.id, article_id: article.id) %>
+                          <%= link_to("/likes/#{article.id}/destroy", {action: :destroy}, remote: true) do %>
+                            <i class="fas fa-heart liked-icon"  id="heart"></i>
+                          <% end %>
+
+
+                        <% else %>
+                          <%= link_to("/likes/#{article.id}/create", {action: :create}, remote: true) do %>
+                            <span class="far fa-heart like-icon"></span>
+                          <% end %>
+                        <% end %>
+
+                        <%= Like.where(article_id: article.id).count %>
+                     </span>
+
+
+
                 </span>
             </td>
-
-
-
-
-            <td class="border-right">
-              <div class="text-center">
-                  <% if Like.find_by(user_id: @current_user.id, article_id: article.id) %>
-                    <%= link_to("/likes/#{article.id}/destroy", {action: :destroy}, remote: true) do %>
-                      <i class="fas fa-heart liked-icon"  id="heart"></i>
-                    <% end %>
-
-
-                  <% else %>
-                    <%= link_to("/likes/#{article.id}/create", {action: :create}, remote: true) do %>
-                      <span class="far fa-heart like-icon"></span>
-                    <% end %>
-                  <% end %>
-
-                  (<%= Like.where(article_id: article.id).count %>)
-              </div>
-            </td>
-
-
-
-
-
-
-
-
           </tr>
         </div>
       <% end %>
