@@ -1,10 +1,9 @@
-  <div class="container-sub text-dark bg-info">
+  <div class="container-sub text-dark bg-info pt-2 pb-3">
     <h1 class="pt-3 text-center">ユーザー一覧</h1>
     <% @users.each do |user| %>
       <div class="mx-5 px-2 my-1 bg-light border">
         <img src = "<%= "/#{user.image_name}" %>" class="user-image">
       	<span class="pr-2 mr-2 border-right"><%= link_to(user.name, "/users/#{user.id}") %></span>
-      	<span class="pr-2 mr-2 border-right"><%= user.email %></span>
         <% if user.id == @current_user.id %>
       	<span><%= link_to("編集", "/users/#{user.id}/edit") %></span>
         <% end %>
