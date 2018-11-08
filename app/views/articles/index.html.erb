@@ -29,26 +29,24 @@
                       <%= link_to '削除', article_path(article),
                         method: :delete, data: { confirm: '本当に削除しますか?' } , class: "btn btn-secondary btn-sm  text-right"%>
                     <% end %>
-                    <!-- いいね機能のview -->
 
+                    <!-- いいね機能のview -->
                       <span class="display-box py-2 px-1 text-center">
                           <% if Like.find_by(user_id: @current_user.id, article_id: article.id) %>
                             <%= link_to("/likes/#{article.id}/destroy", method: :post, remote: true) do %>
                               <i class="fas fa-heart liked-icon"  id="to-unlike<%= article.id %>"></i>
                             <% end %>
-
-
                           <% else %>
                             <%= link_to("/likes/#{article.id}/create", method: :post, remote: true) do %>
                               <span class="far fa-heart like-icon" id="to-like<%= article.id %>"></span>
                             <% end %>
                           <% end %>
 
-
-
                         <span id="like-count<%= article.id %>"><%= Like.where(article_id: article.id).count %></span>
                      </span>
                      <!-- ここまでいいね機能 -->
+
+
                 </span>
             </td>
           </tr>

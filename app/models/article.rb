@@ -7,14 +7,9 @@ class Article < ApplicationRecord
   validates :user_id, presence: true
 
 
-    def like_user(user_id)
-    	likes.create(user_id: user_id)
-    end
-
-  # いいねを解除する
-	def unlike_user(user_id)
-	    likes.find_by(user_id: user_id).destroy
-    end
+    # def like_user?(user_id)
+    # 	.include?(user_id)
+    # end
 
   # scope :newer, -> { order(created_at: :desc) }
     def user

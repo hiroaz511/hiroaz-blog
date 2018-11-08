@@ -1,4 +1,4 @@
 $(function(){
-	$('#to-like<%= @article.id %>').removeClass('far like-icon').addClass('fas liked-icon');
 	$('#like-count<%= @article.id %>').html("<%= Like.where(article_id: @article.id).count %>");
+	$('#to-like<%= @article.id %>').removeClass('far like-icon').addClass('fas liked-icon');
 });

@@ -17,17 +17,18 @@ class LikesController < ApplicationController
  # end
 
  def create
- 	@like=Like.new(user_id: @current_user.id, article_id: params[:article_id])
-    @article = Article.find_by(id: params[:article_id])
- 	@like.save
+ 	    @like=Like.new(user_id: @current_user.id, article_id: params[:article_id])
+ 		@like.save
+ 		@article = Article.find_by(id: params[:article_id])
 
 end
 
 
  def destroy
  	@like = Like.find_by(user_id: @current_user.id, article_id: params[:article_id])
+ 	@like.destroy
     @article = Article.find_by(id: params[:article_id])
-    @like.destroy
+
 
     # @articles.reload
     # puts "!!!!!!!!!!!!!!!!!!!!!!1" + request.path_info
