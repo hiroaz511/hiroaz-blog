@@ -2,6 +2,7 @@
   <div class="container-sub pb-2">
     <h1 class="text-center text-dark pt-3">投稿一覧</h1>
 
+      <div>
       <table class="m-3">
         <tr>
           <th class="text-dark text-center font-size-5"></th>
@@ -12,7 +13,7 @@
 
       <% @articles.each do |article| %>
         <div>
-          <tr class="border text-dark bg-light">
+          <tr class="border text-dark bg-white">
             <td>
                <div class="display-block text-center mx-1">
                   <img src = "<%= "/#{article.user.image_name}" %>" class="user-image my-1">
@@ -20,10 +21,10 @@
                </div>
             </td>
             <td class="border-right w-75">
-                <p class="font-weight-bold"><%= link_to article.title, article_path(article) %></p>
+                <p class="font-weight-bold mt-3"><%= link_to article.title, article_path(article) %></p>
                 <p><%= article.text %></p>
                 <p class="text-right mr-2"><%= time_ago_in_words(article.created_at) %> ago (<%= article.created_at.strftime('%Y/%m/%d %H:%M') %>)</p>
-                <span class="float-right mb-1 mr-1">
+                <span class="float-right mb-3 mr-1">
                     <% if article.user == @current_user %>
                       <%= link_to '編集', edit_article_path(article), class: "btn btn-warning btn-sm text-right" %>
                       <%= link_to '削除', article_path(article),
@@ -33,12 +34,12 @@
                     <!-- いいね機能のview -->
                       <span class="display-box py-2 px-1 text-center">
                           <% if Like.find_by(user_id: @current_user.id, article_id: article.id) %>
-                            <%= link_to("/likes/#{article.id}/destroy", method: :post, remote: true) do %>
-                              <i class="fas fa-heart liked-icon"  id="to-unlike<%= article.id %>"></i>
+                            <%= link_to("/likes/#{article.id}/destroy", method: :delete, remote: true) do %>
+                              <i class="fas fa-heart liked-icon"  id="like-button<%= article.id %>"></i>
                             <% end %>
                           <% else %>
                             <%= link_to("/likes/#{article.id}/create", method: :post, remote: true) do %>
-                              <span class="far fa-heart like-icon" id="to-like<%= article.id %>"></span>
+                              <span class="far fa-heart like-icon" id="like-button<%= article.id %>"></span>
                             <% end %>
                           <% end %>
 
@@ -53,5 +54,6 @@
         </div>
       <% end %>
       </table>
+    </div>
   </div>
 </body>

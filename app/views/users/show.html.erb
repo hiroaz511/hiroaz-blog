@@ -1,8 +1,77 @@
- <div>
-      <!-- 以下で、ユーザー名を出力-->
-      <h2><%= @user.name %></h2>
-      <!-- 以下で、メールアドレスを出力-->
-      <p><%= @user.email %></p>
-      <%= link_to("Edit", "/users/#{@user.id}/edit") %>
-      <%= link_to("ユーザー一覧へ", "/users/index")%>
-    </div>
+ <div class="col-xs-12 col-md-12 col-lg-11">
+ 	<div class="text-center user-info border">
+ 		<div class="my-3">
+		 	 <img src = "<%= "/#{@user.image_name}" %>" class="user-image-lg">
+		</div>
+		<div>
+		      <!-- 以下で、ユーザー名を出力-->
+		      <h2><%= @user.name %></h2>
+		      <!-- 以下で、メールアドレスを出力-->
+		      <p><%= @user.email %></p>
+		      <span>
+		      <% if @user == @current_user %>
+		      <%= link_to("編集", "/users/#{@user.id}/edit", class: "btn btn-warning btn-md text-right mb-2") %>
+		      <% end %>
+		      </span>
+ 		 </div>
+ 		</div>
+ 		<div class="text-center">
+ 		 <%= link_to("ユーザー一覧へ", "/users/index", class: "btn btn-secondary btn-md text-right my-3")%>
+    	</div>
+
+
+      <h4 class="text-center mt-3">このユーザーの投稿一覧 </h4>
+       <table class="m-3">
+        <tr>
+          <th class="text-dark text-center font-size-5"></th>
+          <th class="text-dark text-center font-size-5"></th>
+          <th colspan="1"></th>
+        </tr>
+
+      	<% @articles.each do |article| %>
+        <div>
+          <tr class="border text-dark bg-light">
+            <td>
+               <div class="display-block text-center mx-1">
+                  <img src = "<%= "/#{article.user.image_name}" %>" class="user-image my-1">
+                  <p><%= article.user.name%></p>
+               </div>
+            </td>
+            <td class="border-right w-75">
+                <p class="font-weight-bold"><%= link_to article.title, article_path(article) %></p>
+                <p><%= article.text %></p>
+                <p class="text-right mr-2"><%= time_ago_in_words(article.created_at) %> ago (<%= article.created_at.strftime('%Y/%m/%d %H:%M') %>)</p>
+                <span class="float-right mb-1 mr-1">
+                    <% if article.user == @current_user %>
+                      <%= link_to '編集', edit_article_path(article), class: "btn btn-warning btn-sm text-right" %>
+                      <%= link_to '削除', article_path(article),
+                        method: :delete, data: { confirm: '本当に削除しますか?' } , class: "btn btn-secondary btn-sm  text-right"%>
+                    <% end %>
+
+                    <!-- いいね機能のview -->
+                      <span class="display-box py-2 px-1 text-center">
+                          <% if Like.find_by(user_id: @current_user.id, article_id: article.id) %>
+                            <%= link_to("/likes/#{article.id}/destroy", method: :delete, remote: true) do %>
+                              <i class="fas fa-heart liked-icon"  id="like-button<%= article.id %>"></i>
+                            <% end %>
+                          <% else %>
+                            <%= link_to("/likes/#{article.id}/create", method: :post, remote: true) do %>
+                              <span class="far fa-heart like-icon" id="like-button<%= article.id %>"></span>
+                            <% end %>
+                          <% end %>
+
+                        <span id="like-count<%= article.id %>"><%= Like.where(article_id: article.id).count %></span>
+                     </span>
+                     <!-- ここまでいいね機能 -->
+
+
+                </span>
+            </td>
+          </tr>
+        </div>
+      <% end %>
+ 	 </table>
+ 	  <div class="text-center">
+ 	 	<%= link_to("ユーザー一覧へ", "/users/index", class: "btn btn-secondary btn-md text-right my-3")%>
+ 	  </div>
+      </div>

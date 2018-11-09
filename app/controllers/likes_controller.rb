@@ -1,5 +1,6 @@
 class LikesController < ApplicationController
- before_action :authenticate_user
+ # before_action :check_like
+ before_action :read_article
 
  # def create
  # 	@like=Like.new(user_id: @current_user.id, article_id: params[:article_id])
@@ -19,16 +20,12 @@ class LikesController < ApplicationController
  def create
  	    @like=Like.new(user_id: @current_user.id, article_id: params[:article_id])
  		@like.save
- 		@article = Article.find_by(id: params[:article_id])
-
-end
+ end
 
 
  def destroy
  	@like = Like.find_by(user_id: @current_user.id, article_id: params[:article_id])
- 	@like.destroy
-    @article = Article.find_by(id: params[:article_id])
-
+    @like.destroy
 
     # @articles.reload
     # puts "!!!!!!!!!!!!!!!!!!!!!!1" + request.path_info
@@ -52,5 +49,20 @@ end
 #     @article.unlike_user(@current_user)
 #     redirect_to("/articles")
 #  end
+
+# private
+#   	def check_like
+#   		if Like.where(user_id: @current_user.id, article_id: params[:article_id])
+#   			redirect_to action: :destroy
+#   		else
+#   			redirect_to action: :create
+
+#   		end
+#     end
+
+   def read_article
+   	  @article = Article.find_by(id: params[:article_id])
+   end
+
 
 end

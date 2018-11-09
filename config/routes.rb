@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   post  'likes/:article_id/create' => 'likes#create'
-  post 'likes/:article_id/destroy' => 'likes#destroy'
+  delete 'likes/:article_id/destroy' => 'likes#destroy'
 
   post 'login' => 'users#login'
   get 'login' => 'users#login_form'

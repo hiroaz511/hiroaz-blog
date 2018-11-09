@@ -9,6 +9,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find_by(id: params[:id])
+    @articles = Article.where(user_id: params[:id]).order(created_at: :desc)
   end
 
   def new

@@ -13,7 +13,7 @@
 }
 
 .container-sub{
-	background-image: url("/sub-bg.jpg");
+	background-color:#f7f7f7;
 	background-size: cover;
 	background-repeat: repeat-y;
 	width: 100%;
@@ -42,4 +42,11 @@
 	border-radius: 50%;
 	border: 1px solid gray;
 	object-fit: cover;
+}
+
+.user-image-lg{
+	width:200px;
+	height:200px;
+	object-fit:cover;
+	border-radius: 50%;
 }
