@@ -21,7 +21,7 @@
 
 
       <h4 class="text-center mt-3">このユーザーの投稿一覧 </h4>
-       <table class="m-3">
+       <table class="m-3 mx-auto">
         <tr>
           <th class="text-dark text-center font-size-5"></th>
           <th class="text-dark text-center font-size-5"></th>
@@ -47,6 +47,11 @@
                       <%= link_to '削除', article_path(article),
                         method: :delete, data: { confirm: '本当に削除しますか?' } , class: "btn btn-secondary btn-sm  text-right"%>
                     <% end %>
+                    <!-- コメントの数 -->
+                     <span>
+                     	<i class="far fa-comments">ああああ</i>
+                        <text>aaaa</text>
+                     </span>
 
                     <!-- いいね機能のview -->
                       <span class="display-box py-2 px-1 text-center">

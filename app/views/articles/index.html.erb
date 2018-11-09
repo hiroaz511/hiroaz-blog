@@ -15,10 +15,13 @@
         <div>
           <tr class="border text-dark bg-white">
             <td>
+              <%= link_to("users/#{article.user.id}") do %>
+
                <div class="display-block text-center mx-1">
                   <img src = "<%= "/#{article.user.image_name}" %>" class="user-image my-1">
                   <p><%= article.user.name%></p>
                </div>
+               <% end %>
             </td>
             <td class="border-right w-75 pr-3">
                 <p class="font-weight-bold mt-3"><%= link_to article.title, article_path(article) %></p>
@@ -30,6 +33,11 @@
                       <%= link_to '削除', article_path(article),
                         method: :delete, data: { confirm: '本当に削除しますか?' } , class: "btn btn-secondary btn-sm  text-right"%>
                     <% end %>
+
+                    <!-- コメントの数 -->
+                     <span>
+                      <i class="far fa-comments">(1)</i>
+                     </span>
 
                     <!-- いいね機能のview -->
                       <span class="display-box py-2 px-1 text-center">
@@ -43,7 +51,7 @@
                             <% end %>
                           <% end %>
 
-                        <span id="like-count<%= article.id %>"><%= Like.where(article_id: article.id).count %></span>
+                        (<span id="like-count<%= article.id %>"><%= Like.where(article_id: article.id).count %></span>)
                      </span>
                      <!-- ここまでいいね機能 -->
 
