@@ -1,6 +1,6 @@
 <body>
   <div class="container-sub pb-2">
-    <h1 class="text-center text-dark pt-3">投稿一覧</h1>
+    <h4 class="text-center text-dark pt-3">投稿一覧</h4>
 
       <div>
       <table>
@@ -20,7 +20,7 @@
                   <p><%= article.user.name%></p>
                </div>
             </td>
-            <td class="border-right w-75">
+            <td class="border-right w-75 pr-3">
                 <p class="font-weight-bold mt-3"><%= link_to article.title, article_path(article) %></p>
                 <p><%= article.text %></p>
                 <p class="text-right mr-2"><%= time_ago_in_words(article.created_at) %> ago (<%= article.created_at.strftime('%Y/%m/%d %H:%M') %>)</p>

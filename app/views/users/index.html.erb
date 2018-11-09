@@ -1,7 +1,7 @@
   <div class="container-sub text-dark pt-2 pb-3">
-    <h1 class="pt-3 text-center">ユーザー一覧</h1>
+    <h4 class="pt-3 text-center">ユーザー一覧</h4>
     <% @users.each do |user| %>
-      <div class="mx-5 px-2 my-3 py-3 bg-white border">
+      <div class="col-xs-11 col-md-8 col-lg-7 mx-auto my-3 py-3 bg-white border">
         <img src = "<%= "/#{user.image_name}" %>" class="user-image mx-3">
       	<span class="pr-2 mr-2 border-right"><%= link_to(user.name, "/users/#{user.id}") %></span>
         <% if user.id == @current_user.id %>
