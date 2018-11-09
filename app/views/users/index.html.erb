@@ -3,9 +3,9 @@
     <% @users.each do |user| %>
       <div class="col-xs-11 col-md-8 col-lg-7 mx-auto my-3 py-3 bg-white border">
         <img src = "<%= "/#{user.image_name}" %>" class="user-image mx-3">
-      	<span class="pr-2 mr-2 border-right"><%= link_to(user.name, "/users/#{user.id}") %></span>
+      	<span class="pr-2 mr-2 border-right"><%= link_to(user.name, "/users/#{user.id}", class: "btn btn-light text-dark") %></span>
         <% if user.id == @current_user.id %>
-      	<span><%= link_to("編集", "/users/#{user.id}/edit") %></span>
+      	<span><%= link_to("編集", "/users/#{user.id}/edit", class: "btn-sm btn-warning") %></span>
         <% end %>
       </div>
     <% end %>
