@@ -35,15 +35,13 @@
                     <% end %>
 
                     <!-- コメントの数 -->
-                     <span>
-                      <i class="far fa-comments">(1)</i>
-                     </span>
+                      <span class="display-box py-2 px-1 text-center far fa-comments">(<%= Comment.where(article_id: article.id).count %>)</span>
 
                     <!-- いいね機能のview -->
                       <span class="display-box py-2 px-1 text-center">
                           <% if Like.find_by(user_id: @current_user.id, article_id: article.id) %>
                             <%= link_to("/likes/#{article.id}/destroy", method: :delete, remote: true) do %>
-                              <i class="fas fa-heart liked-icon"  id="like-button<%= article.id %>"></i>
+                              <span class="fas fa-heart liked-icon"  id="like-button<%= article.id %>"></span>
                             <% end %>
                           <% else %>
                             <%= link_to("/likes/#{article.id}/create", method: :post, remote: true) do %>
@@ -51,7 +49,7 @@
                             <% end %>
                           <% end %>
 
-                        (<span id="like-count<%= article.id %>"><%= Like.where(article_id: article.id).count %></span>)
+                        <span id="like-count<%= article.id %>">(<%= Like.where(article_id: article.id).count %>)</span>
                      </span>
                      <!-- ここまでいいね機能 -->
 
